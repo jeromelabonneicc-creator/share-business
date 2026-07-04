@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Share Business™ — Landing Page</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --green:#007a73;
+      --green2:#004f4a;
+      --gold:#d7a944;
+      --gold2:#f1c45d;
+      --ink:#101010;
+      --muted:#5b5b5b;
+      --cream:#fbfaf6;
+      --line:#e6dcc8;
+      --white:#fff;
+      --shadow:0 22px 60px rgba(0,0,0,.16);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,system-ui,sans-serif;font-size:17px;color:var(--ink);background:var(--cream)}
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    input,textarea,button{font:inherit}
+    .container{width:min(1160px,92%);margin:auto}
+    .serif{font-family:'Playfair Display',serif}
+    .tag{font-size:14px;color:var(--green);font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:16px 26px;border:0;border-radius:3px;font-weight:800;font-size:14px;text-transform:uppercase;letter-spacing:.04em;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+    .btn:hover{transform:translateY(-1px)}
+    .btn.gold{background:linear-gradient(135deg,#f5cf73,var(--gold));color:#111;box-shadow:0 14px 30px rgba(215,169,68,.24)}
+    .btn.green{background:var(--green);color:white}
+    .btn.outline{border:1px solid var(--gold);color:white;background:rgba(0,0,0,.12)}
+    header{position:absolute;z-index:10;left:0;right:0;top:0;padding:18px 0;color:white}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;flex-shrink:0}
+    .brand-logo{height:72px;width:auto;object-fit:contain}
+    .site-tabs{display:flex;align-items:center;justify-content:center;gap:22px;font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.03em}
+    .site-tabs a{opacity:.88;white-space:nowrap}
+    .site-tabs a:hover{color:var(--gold);opacity:1}
+    .header-reserve{white-space:nowrap}
+
+    .hero{min-height:680px;background:linear-gradient(90deg,rgba(0,0,0,.95) 0%,rgba(0,0,0,.76) 46%,rgba(0,0,0,.22) 100%),url('assets/hero-networking.jpg') center right/cover no-repeat;color:#fff;display:flex;align-items:center;position:relative}
+    .hero:after{content:"";position:absolute;inset:auto 0 0;height:90px;background:linear-gradient(transparent,rgba(0,0,0,.78))}
+    .hero .container{position:relative;z-index:1;padding-top:86px}
+    .hero h1{font-size:clamp(46px,6.6vw,82px);line-height:.98;margin:0 0 24px;max-width:720px;text-transform:uppercase}
+    .hero h1 b{color:var(--gold);font-weight:800}
+    .hero p{max-width:590px;color:#eee;font-size:18px;line-height:1.75;margin:0 0 32px}
+    .hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+
+    section{padding:80px 0}
+    .video-section{background:#111;color:white;padding:58px 0}
+    .video-panel{display:grid;grid-template-columns:.85fr 1.15fr;gap:44px;align-items:center}
+    .video-panel h2{font-size:42px;line-height:1.05;text-transform:uppercase;margin:10px 0 18px}
+    .video-panel p{color:#d6d6d6;line-height:1.7;margin:0}
+    .video-placeholder{min-height:330px;border:1px solid rgba(215,169,68,.65);background:linear-gradient(135deg,rgba(0,122,115,.36),rgba(0,0,0,.82)),url('assets/mission-audience.jpg') center/cover no-repeat;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);position:relative;overflow:hidden}
+    .video-placeholder:before{content:"";position:absolute;inset:22px;border:1px solid rgba(255,255,255,.16)}
+    .play-mark{width:78px;height:78px;border-radius:50%;background:linear-gradient(135deg,#f5cf73,var(--gold));display:grid;place-items:center;color:#111;font-size:28px;font-weight:800;position:relative;z-index:1;box-shadow:0 16px 42px rgba(0,0,0,.26)}
+
+    .numbers{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;text-align:center}
+    .number{padding:0 18px}
+    .number strong{font-family:'Playfair Display',serif;color:var(--green);font-size:54px;line-height:1}
+    .number p{margin:10px 0 0;color:var(--muted);line-height:1.45}
+    .mission{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;margin-top:58px}
+    .mission img{width:100%;height:330px;object-fit:cover;box-shadow:var(--shadow)}
+    .mission h2{font-size:46px;line-height:1.02;margin:12px 0 24px;text-transform:uppercase}
+    .mission p{color:#555;line-height:1.7}
+    .mission .btn{margin-top:20px}
+
+    .host{background:white;border-top:1px solid #eee;border-bottom:1px solid #eee}
+    .host-layout{display:grid;grid-template-columns:.88fr 1.12fr;gap:60px;align-items:center}
+    .host-photo{min-height:520px;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.16)),url('assets/lurette-host.png') center/cover no-repeat;display:grid;place-items:end start;color:white;box-shadow:var(--shadow);position:relative;overflow:hidden;padding:34px}
+    .host-photo:before{content:"";position:absolute;inset:24px;border:1px solid rgba(215,169,68,.72)}
+    .host-photo span{position:relative;z-index:1;font-family:'Playfair Display',serif;font-size:32px;color:var(--gold);background:rgba(0,0,0,.58);padding:10px 16px}
+    .host h2{font-size:48px;line-height:1.02;text-transform:uppercase;margin:12px 0 24px}
+    .host-copy{color:#4f4f4f;line-height:1.78}
+    .host-copy p{margin:0 0 18px}
+    .signature{font-family:'Playfair Display',serif;color:var(--green);font-size:28px;font-weight:800;text-align:right;margin-top:18px}
+
+    .title{text-align:center;margin-bottom:46px}
+    .title h2{font-family:'Playfair Display',serif;font-size:46px;text-transform:uppercase;margin:6px 0}
+    .title p{max-width:720px;margin:12px auto 0;color:#5a5a5a;line-height:1.7}
+    .title:after{content:"";display:block;width:70px;height:3px;background:var(--gold);margin:14px auto 0}
+    .program-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .program-card{text-align:center;padding:34px 26px;border-right:1px solid var(--line)}
+    .program-card:last-child{border-right:0}
+    .icon{width:62px;height:62px;border:1px solid var(--gold);border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;color:var(--green);font-size:27px;font-weight:700;background:white;box-shadow:0 12px 26px rgba(215,169,68,.12)}
+    .program-card h3{margin:0 0 10px;text-transform:uppercase;font-size:16px}
+    .program-card p{font-size:15px;color:#555;line-height:1.65;margin:0}
+
+    .events{background:radial-gradient(circle at 20% 0%,#0aa397,var(--green2) 55%,#003532);color:#fff}
+    .events .tag,.events .title h2{color:white}
+    .event-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:36px}
+    .event{border:1px solid var(--gold);border-radius:8px;overflow:hidden;background:#111;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+    .event-img{height:170px;background-size:cover;background-position:center;position:relative}
+    .event-img:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent,rgba(0,0,0,.85))}
+    .date{position:absolute;z-index:2;left:16px;top:0;background:linear-gradient(#f7d26f,var(--gold));color:#111;padding:12px 13px;text-align:center;font-weight:800;line-height:1.15}
+    .date b{font-size:26px;display:block}
+    .event-content{padding:24px;text-align:center}
+    .event h3{margin:0 0 18px;text-transform:uppercase;min-height:40px;font-size:20px}
+    .prices{display:flex;justify-content:center;gap:36px;margin-bottom:22px}
+    .prices p{margin:0}
+    .prices span{color:#ddd;font-size:14px}
+    .prices strong{display:block;color:#fff;font-size:28px}
+    .event .btn{border:1px solid var(--gold);color:#fff;padding:12px 28px;background:transparent}
+
+    .speakers{display:grid;grid-template-columns:repeat(6,1fr);gap:28px;text-align:center}
+    .speaker img,.speaker-placeholder{width:104px;height:104px;border-radius:50%;object-fit:cover;margin:0 auto;background:#ddd}
+    .speaker-placeholder{display:grid;place-items:center;background:linear-gradient(135deg,var(--green),#0b2f2d);color:var(--gold);font-family:'Playfair Display',serif;font-size:30px;border:1px solid var(--gold)}
+    .speaker h3{font-size:14px;text-transform:uppercase;margin:14px 0 2px;line-height:1.35}
+    .speaker small{color:#666}
+    .survey-card{margin:44px auto 0;max-width:820px;border:1px solid var(--line);background:white;padding:28px 30px;text-align:center;box-shadow:0 14px 34px rgba(0,0,0,.08)}
+    .survey-card h3{font-family:'Playfair Display',serif;font-size:28px;text-transform:uppercase;margin:0 0 10px}
+    .survey-card p{color:#555;line-height:1.7;margin:0}
+    .survey-form{display:grid;grid-template-columns:1fr auto;gap:12px;margin-top:22px}
+    .survey-form input{width:100%;border:1px solid #d9d0bf;background:var(--cream);padding:15px;color:#111;border-radius:2px}
+    .survey-form .btn{min-height:54px}
+
+    .honor{background:white;border-top:1px solid #eee;border-bottom:1px solid #eee}
+    .honor-layout{display:grid;grid-template-columns:.82fr 1.18fr;gap:54px;align-items:start}
+    .honor h2{font-size:46px;line-height:1.02;text-transform:uppercase;margin:12px 0 20px}
+    .honor p{color:#555;line-height:1.75}
+    .honor-note{border-left:3px solid var(--gold);padding-left:18px;margin-top:24px;color:#333}
+    .honor-form{display:grid;grid-template-columns:1fr 1fr;gap:16px;background:var(--cream);border:1px solid var(--line);padding:28px;box-shadow:0 18px 46px rgba(0,0,0,.08)}
+    .field{display:flex;flex-direction:column;gap:7px}
+    .field.full{grid-column:1/-1}
+    .field label{font-size:13px;font-weight:800;text-transform:uppercase;color:#333;letter-spacing:.04em}
+    .field input,.field textarea{width:100%;border:1px solid #d9d0bf;background:white;padding:14px;color:#111;border-radius:2px}
+    .field textarea{min-height:132px;resize:vertical}
+    .honor-form .btn{justify-self:start}
+
+    .cta{padding:70px 0}
+    .cta-box{background:linear-gradient(135deg,#111,#252525);color:white;padding:34px 54px;border-radius:4px;display:flex;align-items:center;justify-content:space-between;gap:26px}
+    .cta h2{font-size:40px;line-height:1.05;margin:0;text-transform:uppercase}
+    .cta p{color:#ddd;margin:8px 0 0}
+
+    .footer{background:white;padding:55px 0 22px;border-top:1px solid #eee}
+    .footer-grid{display:grid;grid-template-columns:1.25fr 1fr 1.2fr 1fr 1.2fr;gap:34px}
+    .footer .brand-logo{height:64px}
+    .footer h4{color:var(--green);font-size:14px;text-transform:uppercase;margin:0 0 14px}
+    .footer p,.footer a{color:#555;font-size:15px;line-height:1.85;display:block}
+    .footer a:hover{color:var(--green)}
+    .newsletter{display:flex;border:1px solid #ddd;background:white}
+    .newsletter input{border:0;padding:14px;flex:1;min-width:0}
+    .newsletter button{border:0;background:white;padding:0 16px;color:var(--green);font-weight:800;cursor:pointer}
+    .legal{border-top:1px solid #eee;margin-top:35px;padding-top:18px;color:#777;font-size:12px;display:flex;justify-content:space-between;gap:20px}
+
+    @media(max-width:900px){
+      header{padding:14px 0}
+      .nav{flex-wrap:wrap}
+      .brand-logo{height:54px}
+      .header-reserve{padding:12px 15px;font-size:11px}
+      .site-tabs{order:3;width:100%;justify-content:flex-start;gap:18px;overflow:auto;padding:8px 0 2px;font-size:12px}
+      .hero{min-height:650px;background-position:center}
+      .hero h1{font-size:38px;line-height:1.03}
+      .video-panel,.numbers,.program-grid,.event-grid,.footer-grid,.mission,.host-layout,.honor-layout{grid-template-columns:1fr}
+      .program-grid{border-bottom:0}
+      .program-card{border-right:0;border-bottom:1px solid var(--line)}
+      .speakers{grid-template-columns:repeat(2,1fr)}
+      .honor-form{grid-template-columns:1fr;padding:22px}
+      .cta-box{display:block;padding:30px}
+      .footer .brand-logo{height:52px}
+      .legal{flex-direction:column}
+    }
+    @media(max-width:520px){
+      .container{width:min(100% - 28px,1160px)}
+      .nav{gap:12px}
+      .site-tabs{font-size:11px}
+      .hero-actions,.cta-box .btn{width:100%}
+      .hero-actions .btn,.cta-box .btn{flex:1}
+      .prices{gap:22px}
+      .title h2,.mission h2,.host h2,.honor h2{font-size:34px}
+      .hero h1{font-size:36px}
+      section{padding:64px 0}
+      .video-placeholder{min-height:245px}
+      .host-photo{min-height:340px}
+      .survey-form{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="Share Business™">
+        <img class="brand-logo" src="assets/logo-share-business.png" alt="Share Business™">
+      </a>
+      <nav class="site-tabs" aria-label="Navigation principale">
+        <a href="#about">Qui sommes-nous ?</a>
+        <a href="#events">Nos évents</a>
+        <a href="#speakers">Nos invités</a>
+        <a href="#contact">Contacts</a>
+      </nav>
+      <a class="btn gold header-reserve" href="#events">Réserver ma place</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container">
+        <h1 class="serif">Le rendez-vous <b>premium</b> des entrepreneurs et dirigeants</h1>
+        <p>Réseautage haut de gamme, stratégies gagnantes et connexions qui transforment votre business.</p>
+        <div class="hero-actions">
+          <a class="btn gold" href="#events">Réserver ma place</a>
+          <a class="btn outline" href="#program">Découvrir l’événement</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="video-section" id="video">
+      <div class="container video-panel">
+        <div>
+          <p class="tag">Vidéo d’accueil</p>
+          <h2 class="serif">Une première immersion dans l’expérience Share Business™</h2>
+          <p>Un espace vidéo est prévu pour présenter l’événement, son ambiance et la promesse faite aux entrepreneurs avant leur réservation.</p>
+        </div>
+        <div class="video-placeholder" aria-label="Emplacement réservé pour la future vidéo d’accueil">
+          <div class="play-mark">▶</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <p class="tag" style="text-align:center">Share Business™ en chiffres</p>
+        <div class="numbers">
+          <div class="number"><strong>5</strong><p>Intervenants inspirants</p></div>
+          <div class="number"><strong>50</strong><p>Entrepreneurs participants</p></div>
+          <div class="number"><strong>4</strong><p>Share Business dans l’année</p></div>
+          <div class="number"><strong>100%</strong><p>Opportunités de croissance</p></div>
+        </div>
+
+        <div class="mission">
+          <img src="assets/mission-audience.jpg" alt="Conférence entrepreneurs">
+          <div>
+            <p class="tag">Notre mission</p>
+            <h2 class="serif">Créer des connexions.<br>Inspirer l’excellence.<br>Accélérer la croissance.</h2>
+            <p>Share Business™ est une expérience unique qui réunit entrepreneurs, porteurs de projets et dirigeants autour d’une même ambition : développer leur vision, accélérer leur croissance et créer des connexions stratégiques.</p>
+            <a class="btn green" href="#program">En savoir plus</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="host" id="host">
+      <div class="container host-layout">
+        <div class="host-photo" aria-label="Photo de Lurette, hôtesse de l’événement">
+          <span>Lurette MB</span>
+        </div>
+        <div>
+          <p class="tag">Qui suis-je ?</p>
+          <h2 class="serif">L’hôtesse de l’événement</h2>
+          <div class="host-copy">
+            <p>Une entrepreneure chrétienne et cheffe d’entreprise reconnue par HEC.</p>
+            <p>Après 4 ans d’expérience professionnelle en entreprise, j’ai décidé de créer mon entreprise.</p>
+            <p>Je découvre le monde de l’entrepreneuriat et du business. J’ai cette grâce d’avoir un projet inspiré et je mets tout en œuvre pour y arriver : je monte mon business plan grâce à CréaJeunes de l’Adie.</p>
+            <p>Ce que je regrette, c’est un bon club qui nous rassemble, un dîner entre chefs d’entreprises ou un cocktail d’entrepreneurs...</p>
+            <p>Une entreprise à monter étant complexe, nous avons projeté de lancer SHARE BUSINESS™, un concept différent : partager nos expériences business et nos visions.</p>
+            <p>En effet, nous créons plus de richesse et plus de valeur autour de nos moments de qualité.</p>
+            <p>Venez vivre une expérience unique qui vous remplira d’idées et fera booster votre C.A.</p>
+            <div class="signature">LMB</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="program">
+      <div class="container">
+        <div class="title"><h2>Au programme</h2></div>
+        <div class="program-grid">
+          <article class="program-card">
+            <div class="icon">◎</div>
+            <h3>Réseautage haut de gamme</h3>
+            <p>Développez votre réseau professionnel dans un cadre privilégié.</p>
+          </article>
+          <article class="program-card">
+            <div class="icon">◇</div>
+            <h3>Vision & stratégie</h3>
+            <p>Apprenez à structurer votre vision et à faire grandir votre entreprise avec une stratégie claire.</p>
+          </article>
+          <article class="program-card">
+            <div class="icon">✦</div>
+            <h3>Témoignages inspirants</h3>
+            <p>Découvrez les parcours d’entrepreneurs expérimentés.</p>
+          </article>
+          <article class="program-card">
+            <div class="icon">▣</div>
+            <h3>Ateliers exclusifs</h3>
+            <p>Vision board, business model canvas, financement de projet, acquisition clients.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="events" id="events">
+      <div class="container">
+        <div class="title">
+          <p class="tag">Billetterie participant</p>
+          <h2>Les événements 2026</h2>
+        </div>
+        <div class="event-grid">
+          <article class="event">
+            <div class="event-img" style="background-image:url('assets/event-creteil.jpg')"><div class="date"><b>15</b>Août<br>2026</div></div>
+            <div class="event-content">
+              <h3>Novotel Créteil Lac</h3>
+              <div class="prices"><p><span>Standard</span><strong>199 €</strong></p><p><span>VIP</span><strong>299 €</strong></p></div>
+              <a class="btn" href="#contact">Réserver</a>
+            </div>
+          </article>
+          <article class="event">
+            <div class="event-img" style="background-image:url('assets/event-sofitel.jpg')"><div class="date"><b>5</b>Sept.<br>2026</div></div>
+            <div class="event-content">
+              <h3>Sofitel Paris Le Faubourg ★★★★★</h3>
+              <div class="prices"><p><span>Standard</span><strong>299 €</strong></p><p><span>VIP</span><strong>379 €</strong></p></div>
+              <a class="btn" href="#contact">Réserver</a>
+            </div>
+          </article>
+          <article class="event">
+            <div class="event-img" style="background-image:url('assets/event-creteil-2.jpg')"><div class="date"><b>5</b>Déc.<br>2026</div></div>
+            <div class="event-content">
+              <h3>Novotel Créteil Lac</h3>
+              <div class="prices"><p><span>Standard</span><strong>299 €</strong></p><p><span>VIP</span><strong>379 €</strong></p></div>
+              <a class="btn" href="#contact">Réserver</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="speakers">
+      <div class="container">
+        <div class="title"><h2>Nos invités</h2><p>Pasteurs, personnalités et entrepreneurs inspirants réunis autour de la vision Share Business™.</p></div>
+        <div class="speakers">
+          <div class="speaker"><img src="assets/creflo.jpg" alt="Creflo Dollar"><h3>Creflo Dollar</h3></div>
+          <div class="speaker"><img src="assets/yvan.jpg" alt="Yvan Castanou"><h3>Yvan Castanou</h3></div>
+          <div class="speaker"><img src="assets/serge.jpg" alt="Serge Azebaze"><h3>Serge Azebaze</h3></div>
+          <div class="speaker"><img src="assets/terri.jpg" alt="Terri Savelle Foy"><h3>Terri Savelle Foy</h3></div>
+          <div class="speaker"><img src="assets/dena.jpg" alt="Dena Mwana"><h3>Dena Mwana</h3></div>
+          <div class="speaker"><img src="assets/bill.jpg" alt="Bill Gates"><h3>Bill Gates</h3><small>Sous réserve</small></div>
+          <div class="speaker"><img src="assets/modestine-castanou.jpg" alt="Modestine Castanou"><h3>Modestine</h3></div>
+          <div class="speaker"><img src="assets/jean-claude-tshipama.jpg" alt="Jean-Claude Tshipama"><h3>Jean-Claude Tshipama</h3></div>
+          <div class="speaker"><img src="assets/jocelyne-goma.jpg" alt="Jocelyne Goma"><h3>Jocelyne Goma</h3></div>
+          <div class="speaker"><div class="speaker-placeholder" aria-hidden="true">CA</div><h3>Carlix Angi</h3></div>
+          <div class="speaker"><div class="speaker-placeholder" aria-hidden="true">FM</div><h3>AP Fatou Ma</h3></div>
+        </div>
+        <div class="survey-card">
+          <h3>Sondage invités</h3>
+          <p>Proposez le nom du pasteur, de la personnalité ou de l’entrepreneur que vous aimeriez voir participer à un prochain événement Share Business™.</p>
+          <form class="survey-form" action="#" method="post">
+            <input type="text" name="invite_souhaite" placeholder="Nom de l’invité souhaité" aria-label="Nom de l’invité souhaité" required>
+            <button class="btn green" type="submit">Envoyer</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="honor" id="honor">
+      <div class="container honor-layout">
+        <div>
+          <p class="tag">Candidature</p>
+          <h2 class="serif">Devenir invité d’honneur</h2>
+          <p>Vous souhaitez participer à Share Business™ avec un statut d’invité d’honneur ? Remplissez le formulaire de candidature ci-dessous.</p>
+          <p class="honor-note">Chaque demande est étudiée individuellement par l’équipe Share Business™. La participation en tant qu’invité d’honneur est validée manuellement après analyse du profil et des informations transmises.</p>
+        </div>
+        <form class="honor-form" action="#" method="post">
+          <div class="field"><label for="honor-lastname">Nom</label><input id="honor-lastname" name="nom" autocomplete="family-name" required></div>
+          <div class="field"><label for="honor-firstname">Prénom</label><input id="honor-firstname" name="prenom" autocomplete="given-name" required></div>
+          <div class="field"><label for="honor-email">Email</label><input id="honor-email" name="email" type="email" autocomplete="email" required></div>
+          <div class="field"><label for="honor-phone">Téléphone</label><input id="honor-phone" name="telephone" type="tel" autocomplete="tel" required></div>
+          <div class="field"><label for="honor-company">Entreprise / organisation</label><input id="honor-company" name="entreprise" autocomplete="organization"></div>
+          <div class="field"><label for="honor-role">Fonction</label><input id="honor-role" name="fonction" autocomplete="organization-title"></div>
+          <div class="field full"><label for="honor-reason">Pourquoi souhaitez-vous devenir invité d’honneur ?</label><textarea id="honor-reason" name="motivation" required></textarea></div>
+          <div class="field full"><label for="honor-link">Lien site web ou réseau social si disponible</label><input id="honor-link" name="lien" type="url" placeholder="https://"></div>
+          <div class="field full"><button class="btn green" type="submit">Envoyer ma candidature</button></div>
+        </form>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container">
+        <div class="cta-box">
+          <div>
+            <h2 class="serif">Prêt à passer<br>au niveau supérieur ?</h2>
+            <p>Rejoignez la communauté des entrepreneurs qui osent voir plus grand.</p>
+          </div>
+          <a class="btn gold" href="#events">Réserver ma place</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contact">
+    <div class="container footer-grid">
+      <div>
+        <a class="brand" href="#home" aria-label="Share Business™"><img class="brand-logo" src="assets/logo-share-business.png" alt="Share Business™"></a>
+        <p>Le rendez-vous premium des entrepreneurs et dirigeants. Réseautage, stratégies et connexions qui transforment.</p>
+      </div>
+      <div>
+        <h4>Qui sommes-nous ?</h4>
+        <a href="#about">Présentation SHARE BUSINESS</a>
+        <a href="#host">Qui suis-je ?</a>
+      </div>
+      <div>
+        <h4>Onglets</h4>
+        <a href="#home">Accueil</a>
+        <a href="#events">Nos évents : dates et inscriptions</a>
+        <a href="#speakers">Nos invités : pasteurs et personnalités</a>
+        <a href="#honor">Devenir invité d’honneur</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div>
+        <h4>Contacts</h4>
+        <p>contact@sharebusiness.fr<br>+33 6 00 00 00 00<br>Paris, France</p>
+      </div>
+      <div>
+        <h4>Newsletter</h4>
+        <p>Recevez nos actualités et nos prochains événements.</p>
+        <form class="newsletter" action="#" method="post">
+          <input type="email" name="email" placeholder="Votre email" aria-label="Votre email" required>
+          <button type="submit" aria-label="S’inscrire à la newsletter">→</button>
+        </form>
+      </div>
+    </div>
+    <div class="container legal">
+      <span>© 2026 Share Business™. Tous droits réservés.</span>
+      <span>Mentions légales · Politique de confidentialité</span>
+    </div>
+  </footer>
+</body>
+</html>
