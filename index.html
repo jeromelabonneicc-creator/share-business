@@ -41,6 +41,9 @@
     .site-tabs{display:flex;align-items:center;justify-content:center;gap:22px;font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.03em}
     .site-tabs a{opacity:.88;white-space:nowrap}
     .site-tabs a:hover{color:var(--gold);opacity:1}
+    .language-switch{display:flex;align-items:center;gap:6px}
+    .language-switch button{border:1px solid rgba(255,255,255,.45);background:rgba(0,0,0,.16);color:white;padding:8px 10px;border-radius:2px;font-size:12px;font-weight:800;cursor:pointer}
+    .language-switch button.active{background:var(--gold);border-color:var(--gold);color:#111}
     .header-reserve{white-space:nowrap}
 
     .hero{min-height:680px;background:linear-gradient(90deg,rgba(0,0,0,.95) 0%,rgba(0,0,0,.76) 46%,rgba(0,0,0,.22) 100%),url('assets/hero-networking.jpg') center right/cover no-repeat;color:#fff;display:flex;align-items:center;position:relative}
@@ -76,8 +79,12 @@
     .host-photo:before{content:"";position:absolute;inset:24px;border:1px solid rgba(215,169,68,.72)}
     .host-photo span{position:relative;z-index:1;font-family:'Playfair Display',serif;font-size:32px;color:var(--gold);background:rgba(0,0,0,.58);padding:10px 16px}
     .host h2{font-size:48px;line-height:1.02;text-transform:uppercase;margin:12px 0 24px}
-    .host-copy{color:#4f4f4f;line-height:1.78}
+    .host-copy{color:#4f4f4f;line-height:1.78;text-align:justify}
     .host-copy p{margin:0 0 18px}
+    .host-details{border-top:1px solid var(--line);margin-top:10px;padding-top:16px}
+    .host-details summary{display:inline-flex;align-items:center;min-height:46px;padding:12px 18px;margin-bottom:18px;background:var(--green);color:white;border-radius:3px;font-weight:800;text-transform:uppercase;font-size:13px;letter-spacing:.04em;cursor:pointer}
+    .host-details summary::marker{display:none}
+    .host-details summary::-webkit-details-marker{display:none}
     .signature{font-family:'Playfair Display',serif;color:var(--green);font-size:28px;font-weight:800;text-align:right;margin-top:18px}
 
     .title{text-align:center;margin-bottom:46px}
@@ -154,6 +161,7 @@
       .brand-logo{height:54px}
       .header-reserve{padding:12px 15px;font-size:11px}
       .site-tabs{order:3;width:100%;justify-content:flex-start;gap:18px;overflow:auto;padding:8px 0 2px;font-size:12px}
+      .language-switch{margin-left:auto}
       .hero{min-height:650px;background-position:center}
       .hero h1{font-size:38px;line-height:1.03}
       .video-panel,.numbers,.program-grid,.event-grid,.footer-grid,.mission,.host-layout,.honor-layout{grid-template-columns:1fr}
@@ -168,6 +176,7 @@
     @media(max-width:520px){
       .container{width:min(100% - 28px,1160px)}
       .nav{gap:12px}
+      .language-switch button{padding:7px 9px;font-size:11px}
       .site-tabs{font-size:11px}
       .hero-actions,.cta-box .btn{width:100%}
       .hero-actions .btn,.cta-box .btn{flex:1}
@@ -188,23 +197,27 @@
         <img class="brand-logo" src="assets/logo-share-business.png" alt="Share Business™">
       </a>
       <nav class="site-tabs" aria-label="Navigation principale">
-        <a href="#about">Qui sommes-nous ?</a>
-        <a href="#events">Nos évents</a>
-        <a href="#speakers">Nos invités</a>
-        <a href="#contact">Contacts</a>
+        <a href="#about" data-i18n="nav_about">Qui sommes-nous ?</a>
+        <a href="#events" data-i18n="nav_events">Nos évents</a>
+        <a href="#speakers" data-i18n="nav_guests">Nos invités</a>
+        <a href="#contact" data-i18n="nav_contact">Contacts</a>
       </nav>
-      <a class="btn gold header-reserve" href="#events">Réserver ma place</a>
+      <div class="language-switch" aria-label="Choix de langue">
+        <button type="button" class="active" data-lang="fr">FR</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+      <a class="btn gold header-reserve ticket-link" href="https://my.weezevent.com/la-journee-des-entrepreneurs-et-des-chefs-dentreprise?_gl=1*1xhs90l*_gcl_au*MTI3MjYzNTQzMS4xNzgxOTM4NDY5LjEwMTQyMDA2MS4xNzgyMTE2MDYwLjE3ODIxMTYwNjA.*_ga*MjAxNzQ3NzI1My4xNzgxOTM4NDY5*_ga_39H9VBFX7G*czE3ODIxMTk2NDckbzUkZzEkdDE3ODIxMjAyMzIkajYwJGwwJGgxOTk4MzMzOTg4" target="_blank" rel="noopener" data-i18n="book_seat">Réserver ma place</a>
     </div>
   </header>
 
   <main>
     <section class="hero" id="home">
       <div class="container">
-        <h1 class="serif">Le rendez-vous <b>premium</b> des entrepreneurs et dirigeants</h1>
-        <p>Réseautage haut de gamme, stratégies gagnantes et connexions qui transforment votre business.</p>
+        <h1 class="serif" data-i18n-html="hero_title">Le rendez-vous <b>premium</b> des entrepreneurs et dirigeants</h1>
+        <p data-i18n="hero_text">Réseautage haut de gamme, stratégies gagnantes et connexions qui transforment votre business.</p>
         <div class="hero-actions">
-          <a class="btn gold" href="#events">Réserver ma place</a>
-          <a class="btn outline" href="#program">Découvrir l’événement</a>
+          <a class="btn gold ticket-link" href="https://my.weezevent.com/la-journee-des-entrepreneurs-et-des-chefs-dentreprise?_gl=1*1xhs90l*_gcl_au*MTI3MjYzNTQzMS4xNzgxOTM4NDY5LjEwMTQyMDA2MS4xNzgyMTE2MDYwLjE3ODIxMTYwNjA.*_ga*MjAxNzQ3NzI1My4xNzgxOTM4NDY5*_ga_39H9VBFX7G*czE3ODIxMTk2NDckbzUkZzEkdDE3ODIxMjAyMzIkajYwJGwwJGgxOTk4MzMzOTg4" target="_blank" rel="noopener" data-i18n="book_seat">Réserver ma place</a>
+          <a class="btn outline" href="#program" data-i18n="discover_event">Découvrir l’événement</a>
         </div>
       </div>
     </section>
@@ -212,9 +225,9 @@
     <section class="video-section" id="video">
       <div class="container video-panel">
         <div>
-          <p class="tag">Vidéo d’accueil</p>
-          <h2 class="serif">Une première immersion dans l’expérience Share Business™</h2>
-          <p>Un espace vidéo est prévu pour présenter l’événement, son ambiance et la promesse faite aux entrepreneurs avant leur réservation.</p>
+          <p class="tag" data-i18n="video_tag">Vidéo d’accueil</p>
+          <h2 class="serif" data-i18n="video_title">Une première immersion dans l’expérience Share Business™</h2>
+          <p data-i18n="video_text">Un espace vidéo est prévu pour présenter l’événement, son ambiance et la promesse faite aux entrepreneurs avant leur réservation.</p>
         </div>
         <div class="video-placeholder" aria-label="Emplacement réservé pour la future vidéo d’accueil">
           <div class="play-mark">▶</div>
@@ -224,21 +237,21 @@
 
     <section id="about">
       <div class="container">
-        <p class="tag" style="text-align:center">Share Business™ en chiffres</p>
+        <p class="tag" style="text-align:center" data-i18n="numbers_tag">Share Business™ en chiffres</p>
         <div class="numbers">
-          <div class="number"><strong>5</strong><p>Intervenants inspirants</p></div>
-          <div class="number"><strong>50</strong><p>Entrepreneurs participants</p></div>
-          <div class="number"><strong>4</strong><p>Share Business dans l’année</p></div>
-          <div class="number"><strong>100%</strong><p>Opportunités de croissance</p></div>
+          <div class="number"><strong>5</strong><p data-i18n="number_speakers">Intervenants inspirants</p></div>
+          <div class="number"><strong>50</strong><p data-i18n="number_participants">Entrepreneurs participants</p></div>
+          <div class="number"><strong>4</strong><p data-i18n="number_year">Share Business dans l’année</p></div>
+          <div class="number"><strong>100%</strong><p data-i18n="number_growth">Opportunités de croissance</p></div>
         </div>
 
         <div class="mission">
           <img src="assets/mission-audience.jpg" alt="Conférence entrepreneurs">
           <div>
-            <p class="tag">Notre mission</p>
-            <h2 class="serif">Créer des connexions.<br>Inspirer l’excellence.<br>Accélérer la croissance.</h2>
-            <p>Share Business™ est une expérience unique qui réunit entrepreneurs, porteurs de projets et dirigeants autour d’une même ambition : développer leur vision, accélérer leur croissance et créer des connexions stratégiques.</p>
-            <a class="btn green" href="#program">En savoir plus</a>
+            <p class="tag" data-i18n="mission_tag">Notre mission</p>
+            <h2 class="serif" data-i18n-html="mission_title">Créer des connexions.<br>Inspirer l’excellence.<br>Accélérer la croissance.</h2>
+            <p data-i18n="mission_text">Share Business™ est une expérience unique qui réunit entrepreneurs, porteurs de projets et dirigeants autour d’une même ambition : développer leur vision, accélérer leur croissance et créer des connexions stratégiques.</p>
+            <a class="btn green" href="#program" data-i18n="learn_more">En savoir plus</a>
           </div>
         </div>
       </div>
@@ -250,17 +263,20 @@
           <span>Lurette MB</span>
         </div>
         <div>
-          <p class="tag">Qui suis-je ?</p>
-          <h2 class="serif">L’hôtesse de l’événement</h2>
+          <p class="tag" data-i18n="host_tag">Qui suis-je ?</p>
+          <h2 class="serif" data-i18n="host_title">L’hôtesse de l’événement</h2>
           <div class="host-copy">
-            <p>Une entrepreneure chrétienne et cheffe d’entreprise reconnue par HEC.</p>
-            <p>Après 4 ans d’expérience professionnelle en entreprise, j’ai décidé de créer mon entreprise.</p>
-            <p>Je découvre le monde de l’entrepreneuriat et du business. J’ai cette grâce d’avoir un projet inspiré et je mets tout en œuvre pour y arriver : je monte mon business plan grâce à CréaJeunes de l’Adie.</p>
-            <p>Ce que je regrette, c’est un bon club qui nous rassemble, un dîner entre chefs d’entreprises ou un cocktail d’entrepreneurs...</p>
-            <p>Une entreprise à monter étant complexe, nous avons projeté de lancer SHARE BUSINESS™, un concept différent : partager nos expériences business et nos visions.</p>
-            <p>En effet, nous créons plus de richesse et plus de valeur autour de nos moments de qualité.</p>
-            <p>Venez vivre une expérience unique qui vous remplira d’idées et fera booster votre C.A.</p>
-            <div class="signature">LMB</div>
+            <p data-i18n="host_p1">Une entrepreneure chrétienne et cheffe d’entreprise reconnue par HEC.</p>
+            <p data-i18n="host_p2">Après 4 ans d’expérience professionnelle en entreprise, j’ai décidé de créer mon entreprise.</p>
+            <details class="host-details">
+              <summary data-i18n="read_more">Lire la suite</summary>
+              <p data-i18n="host_p3">Je découvre le monde de l’entrepreneuriat et du business. J’ai cette grâce d’avoir un projet inspiré et je mets tout en œuvre pour y arriver : je monte mon business plan grâce à CréaJeunes de l’Adie.</p>
+              <p data-i18n="host_p4">Ce que je regrette, c’est un bon club qui nous rassemble, un dîner entre chefs d’entreprises ou un cocktail d’entrepreneurs...</p>
+              <p data-i18n="host_p5">Une entreprise à monter étant complexe, nous avons projeté de lancer SHARE BUSINESS™, un concept différent : partager nos expériences business et nos visions.</p>
+              <p data-i18n="host_p6">En effet, nous créons plus de richesse et plus de valeur autour de nos moments de qualité.</p>
+              <p data-i18n="host_p7">Venez vivre une expérience unique qui vous remplira d’idées et fera booster votre C.A.</p>
+              <div class="signature">LMB</div>
+            </details>
           </div>
         </div>
       </div>
@@ -268,27 +284,27 @@
 
     <section id="program">
       <div class="container">
-        <div class="title"><h2>Au programme</h2></div>
+        <div class="title"><h2 data-i18n="program_title">Au programme</h2></div>
         <div class="program-grid">
           <article class="program-card">
             <div class="icon">◎</div>
-            <h3>Réseautage haut de gamme</h3>
-            <p>Développez votre réseau professionnel dans un cadre privilégié.</p>
+            <h3 data-i18n="program_network_title">Réseautage haut de gamme</h3>
+            <p data-i18n="program_network_text">Développez votre réseau professionnel dans un cadre privilégié.</p>
           </article>
           <article class="program-card">
             <div class="icon">◇</div>
-            <h3>Vision & stratégie</h3>
-            <p>Apprenez à structurer votre vision et à faire grandir votre entreprise avec une stratégie claire.</p>
+            <h3 data-i18n="program_strategy_title">Vision & stratégie</h3>
+            <p data-i18n="program_strategy_text">Apprenez à structurer votre vision et à faire grandir votre entreprise avec une stratégie claire.</p>
           </article>
           <article class="program-card">
             <div class="icon">✦</div>
-            <h3>Témoignages inspirants</h3>
-            <p>Découvrez les parcours d’entrepreneurs expérimentés.</p>
+            <h3 data-i18n="program_testimonials_title">Témoignages inspirants</h3>
+            <p data-i18n="program_testimonials_text">Découvrez les parcours d’entrepreneurs expérimentés.</p>
           </article>
           <article class="program-card">
             <div class="icon">▣</div>
-            <h3>Ateliers exclusifs</h3>
-            <p>Vision board, business model canvas, financement de projet, acquisition clients.</p>
+            <h3 data-i18n="program_workshops_title">Ateliers exclusifs</h3>
+            <p data-i18n="program_workshops_text">Vision board, business model canvas, financement de projet, acquisition clients.</p>
           </article>
         </div>
       </div>
@@ -297,8 +313,8 @@
     <section class="events" id="events">
       <div class="container">
         <div class="title">
-          <p class="tag">Billetterie participant</p>
-          <h2>Les événements 2026</h2>
+          <p class="tag" data-i18n="ticket_tag">Billetterie participant</p>
+          <h2 data-i18n="events_title">Les événements 2026</h2>
         </div>
         <div class="event-grid">
           <article class="event">
@@ -306,7 +322,7 @@
             <div class="event-content">
               <h3>Novotel Créteil Lac</h3>
               <div class="prices"><p><span>Standard</span><strong>199 €</strong></p><p><span>VIP</span><strong>299 €</strong></p></div>
-              <a class="btn" href="#contact">Réserver</a>
+              <a class="btn ticket-link" href="https://my.weezevent.com/la-journee-des-entrepreneurs-et-des-chefs-dentreprise?_gl=1*1xhs90l*_gcl_au*MTI3MjYzNTQzMS4xNzgxOTM4NDY5LjEwMTQyMDA2MS4xNzgyMTE2MDYwLjE3ODIxMTYwNjA.*_ga*MjAxNzQ3NzI1My4xNzgxOTM4NDY5*_ga_39H9VBFX7G*czE3ODIxMTk2NDckbzUkZzEkdDE3ODIxMjAyMzIkajYwJGwwJGgxOTk4MzMzOTg4" target="_blank" rel="noopener" data-i18n="book">Réserver</a>
             </div>
           </article>
           <article class="event">
@@ -314,7 +330,7 @@
             <div class="event-content">
               <h3>Sofitel Paris Le Faubourg ★★★★★</h3>
               <div class="prices"><p><span>Standard</span><strong>299 €</strong></p><p><span>VIP</span><strong>379 €</strong></p></div>
-              <a class="btn" href="#contact">Réserver</a>
+              <a class="btn ticket-link" href="https://my.weezevent.com/la-journee-des-entrepreneurs-et-des-chefs-dentreprise?_gl=1*1xhs90l*_gcl_au*MTI3MjYzNTQzMS4xNzgxOTM4NDY5LjEwMTQyMDA2MS4xNzgyMTE2MDYwLjE3ODIxMTYwNjA.*_ga*MjAxNzQ3NzI1My4xNzgxOTM4NDY5*_ga_39H9VBFX7G*czE3ODIxMTk2NDckbzUkZzEkdDE3ODIxMjAyMzIkajYwJGwwJGgxOTk4MzMzOTg4" target="_blank" rel="noopener" data-i18n="book">Réserver</a>
             </div>
           </article>
           <article class="event">
@@ -322,7 +338,7 @@
             <div class="event-content">
               <h3>Novotel Créteil Lac</h3>
               <div class="prices"><p><span>Standard</span><strong>299 €</strong></p><p><span>VIP</span><strong>379 €</strong></p></div>
-              <a class="btn" href="#contact">Réserver</a>
+              <a class="btn ticket-link" href="https://my.weezevent.com/la-journee-des-entrepreneurs-et-des-chefs-dentreprise?_gl=1*1xhs90l*_gcl_au*MTI3MjYzNTQzMS4xNzgxOTM4NDY5LjEwMTQyMDA2MS4xNzgyMTE2MDYwLjE3ODIxMTYwNjA.*_ga*MjAxNzQ3NzI1My4xNzgxOTM4NDY5*_ga_39H9VBFX7G*czE3ODIxMTk2NDckbzUkZzEkdDE3ODIxMjAyMzIkajYwJGwwJGgxOTk4MzMzOTg4" target="_blank" rel="noopener" data-i18n="book">Réserver</a>
             </div>
           </article>
         </div>
@@ -331,7 +347,7 @@
 
     <section id="speakers">
       <div class="container">
-        <div class="title"><h2>Nos invités</h2><p>Pasteurs, personnalités et entrepreneurs inspirants réunis autour de la vision Share Business™.</p></div>
+        <div class="title"><h2 data-i18n="guests_title">Nos invités</h2><p data-i18n="guests_text">Pasteurs, personnalités et entrepreneurs inspirants réunis autour de la vision Share Business™.</p></div>
         <div class="speakers">
           <div class="speaker"><img src="assets/creflo.jpg" alt="Creflo Dollar"><h3>Creflo Dollar</h3></div>
           <div class="speaker"><img src="assets/yvan.jpg" alt="Yvan Castanou"><h3>Yvan Castanou</h3></div>
@@ -346,11 +362,11 @@
           <div class="speaker"><div class="speaker-placeholder" aria-hidden="true">FM</div><h3>AP Fatou Ma</h3></div>
         </div>
         <div class="survey-card">
-          <h3>Sondage invités</h3>
-          <p>Proposez le nom du pasteur, de la personnalité ou de l’entrepreneur que vous aimeriez voir participer à un prochain événement Share Business™.</p>
+          <h3 data-i18n="survey_title">Sondage invités</h3>
+          <p data-i18n="survey_text">Proposez le nom du pasteur, de la personnalité ou de l’entrepreneur que vous aimeriez voir participer à un prochain événement Share Business™.</p>
           <form class="survey-form" action="#" method="post">
-            <input type="text" name="invite_souhaite" placeholder="Nom de l’invité souhaité" aria-label="Nom de l’invité souhaité" required>
-            <button class="btn green" type="submit">Envoyer</button>
+            <input type="text" name="invite_souhaite" placeholder="Nom de l’invité souhaité" aria-label="Nom de l’invité souhaité" data-i18n-placeholder="survey_placeholder" data-i18n-aria="survey_placeholder" required>
+            <button class="btn green" type="submit" data-i18n="send">Envoyer</button>
           </form>
         </div>
       </div>
@@ -359,21 +375,21 @@
     <section class="honor" id="honor">
       <div class="container honor-layout">
         <div>
-          <p class="tag">Candidature</p>
-          <h2 class="serif">Devenir invité d’honneur</h2>
-          <p>Vous souhaitez participer à Share Business™ avec un statut d’invité d’honneur ? Remplissez le formulaire de candidature ci-dessous.</p>
-          <p class="honor-note">Chaque demande est étudiée individuellement par l’équipe Share Business™. La participation en tant qu’invité d’honneur est validée manuellement après analyse du profil et des informations transmises.</p>
+          <p class="tag" data-i18n="honor_tag">Candidature</p>
+          <h2 class="serif" data-i18n="honor_title">Devenir invité d’honneur</h2>
+          <p data-i18n="honor_text">Vous souhaitez participer à Share Business™ avec un statut d’invité d’honneur ? Remplissez le formulaire de candidature ci-dessous.</p>
+          <p class="honor-note" data-i18n="honor_note">Chaque demande est étudiée individuellement par l’équipe Share Business™. La participation en tant qu’invité d’honneur est validée manuellement après analyse du profil et des informations transmises.</p>
         </div>
         <form class="honor-form" action="#" method="post">
-          <div class="field"><label for="honor-lastname">Nom</label><input id="honor-lastname" name="nom" autocomplete="family-name" required></div>
-          <div class="field"><label for="honor-firstname">Prénom</label><input id="honor-firstname" name="prenom" autocomplete="given-name" required></div>
+          <div class="field"><label for="honor-lastname" data-i18n="field_lastname">Nom</label><input id="honor-lastname" name="nom" autocomplete="family-name" required></div>
+          <div class="field"><label for="honor-firstname" data-i18n="field_firstname">Prénom</label><input id="honor-firstname" name="prenom" autocomplete="given-name" required></div>
           <div class="field"><label for="honor-email">Email</label><input id="honor-email" name="email" type="email" autocomplete="email" required></div>
-          <div class="field"><label for="honor-phone">Téléphone</label><input id="honor-phone" name="telephone" type="tel" autocomplete="tel" required></div>
-          <div class="field"><label for="honor-company">Entreprise / organisation</label><input id="honor-company" name="entreprise" autocomplete="organization"></div>
-          <div class="field"><label for="honor-role">Fonction</label><input id="honor-role" name="fonction" autocomplete="organization-title"></div>
-          <div class="field full"><label for="honor-reason">Pourquoi souhaitez-vous devenir invité d’honneur ?</label><textarea id="honor-reason" name="motivation" required></textarea></div>
-          <div class="field full"><label for="honor-link">Lien site web ou réseau social si disponible</label><input id="honor-link" name="lien" type="url" placeholder="https://"></div>
-          <div class="field full"><button class="btn green" type="submit">Envoyer ma candidature</button></div>
+          <div class="field"><label for="honor-phone" data-i18n="field_phone">Téléphone</label><input id="honor-phone" name="telephone" type="tel" autocomplete="tel" required></div>
+          <div class="field"><label for="honor-company" data-i18n="field_company">Entreprise / organisation</label><input id="honor-company" name="entreprise" autocomplete="organization"></div>
+          <div class="field"><label for="honor-role" data-i18n="field_role">Fonction</label><input id="honor-role" name="fonction" autocomplete="organization-title"></div>
+          <div class="field full"><label for="honor-reason" data-i18n="field_reason">Pourquoi souhaitez-vous devenir invité d’honneur ?</label><textarea id="honor-reason" name="motivation" required></textarea></div>
+          <div class="field full"><label for="honor-link" data-i18n="field_link">Lien site web ou réseau social si disponible</label><input id="honor-link" name="lien" type="url" placeholder="https://"></div>
+          <div class="field full"><button class="btn green" type="submit" data-i18n="send_application">Envoyer ma candidature</button></div>
         </form>
       </div>
     </section>
@@ -382,10 +398,10 @@
       <div class="container">
         <div class="cta-box">
           <div>
-            <h2 class="serif">Prêt à passer<br>au niveau supérieur ?</h2>
-            <p>Rejoignez la communauté des entrepreneurs qui osent voir plus grand.</p>
+            <h2 class="serif" data-i18n-html="cta_title">Prêt à passer<br>au niveau supérieur ?</h2>
+            <p data-i18n="cta_text">Rejoignez la communauté des entrepreneurs qui osent voir plus grand.</p>
           </div>
-          <a class="btn gold" href="#events">Réserver ma place</a>
+          <a class="btn gold ticket-link" href="https://my.weezevent.com/la-journee-des-entrepreneurs-et-des-chefs-dentreprise?_gl=1*1xhs90l*_gcl_au*MTI3MjYzNTQzMS4xNzgxOTM4NDY5LjEwMTQyMDA2MS4xNzgyMTE2MDYwLjE3ODIxMTYwNjA.*_ga*MjAxNzQ3NzI1My4xNzgxOTM4NDY5*_ga_39H9VBFX7G*czE3ODIxMTk2NDckbzUkZzEkdDE3ODIxMjAyMzIkajYwJGwwJGgxOTk4MzMzOTg4" target="_blank" rel="noopener" data-i18n="book_seat">Réserver ma place</a>
         </div>
       </div>
     </section>
@@ -395,38 +411,96 @@
     <div class="container footer-grid">
       <div>
         <a class="brand" href="#home" aria-label="Share Business™"><img class="brand-logo" src="assets/logo-share-business.png" alt="Share Business™"></a>
-        <p>Le rendez-vous premium des entrepreneurs et dirigeants. Réseautage, stratégies et connexions qui transforment.</p>
+        <p data-i18n="footer_about">Le rendez-vous premium des entrepreneurs et dirigeants. Réseautage, stratégies et connexions qui transforment.</p>
       </div>
       <div>
-        <h4>Qui sommes-nous ?</h4>
-        <a href="#about">Présentation SHARE BUSINESS</a>
-        <a href="#host">Qui suis-je ?</a>
+        <h4 data-i18n="footer_who">Qui sommes-nous ?</h4>
+        <a href="#about" data-i18n="footer_presentation">Présentation SHARE BUSINESS</a>
+        <a href="#host" data-i18n="host_tag">Qui suis-je ?</a>
       </div>
       <div>
-        <h4>Onglets</h4>
-        <a href="#home">Accueil</a>
-        <a href="#events">Nos évents : dates et inscriptions</a>
-        <a href="#speakers">Nos invités : pasteurs et personnalités</a>
-        <a href="#honor">Devenir invité d’honneur</a>
-        <a href="#contact">Contact</a>
+        <h4 data-i18n="footer_tabs">Onglets</h4>
+        <a href="#home" data-i18n="footer_home">Accueil</a>
+        <a href="#events" data-i18n="footer_events">Nos évents : dates et inscriptions</a>
+        <a href="#speakers" data-i18n="footer_guests">Nos invités : pasteurs et personnalités</a>
+        <a href="#honor" data-i18n="honor_title">Devenir invité d’honneur</a>
+        <a href="#contact" data-i18n="footer_contact">Contact</a>
       </div>
       <div>
         <h4>Contacts</h4>
-        <p>contact@sharebusiness.fr<br>+33 6 00 00 00 00<br>Paris, France</p>
+        <p>shareourbusiness@gmail.com<br>+33 7 82 40 20 85<br>Paris, France</p>
       </div>
       <div>
         <h4>Newsletter</h4>
-        <p>Recevez nos actualités et nos prochains événements.</p>
+        <p data-i18n="newsletter_text">Recevez nos actualités et nos prochains événements.</p>
         <form class="newsletter" action="#" method="post">
-          <input type="email" name="email" placeholder="Votre email" aria-label="Votre email" required>
+          <input type="email" name="email" placeholder="Votre email" aria-label="Votre email" data-i18n-placeholder="email_placeholder" data-i18n-aria="email_placeholder" required>
           <button type="submit" aria-label="S’inscrire à la newsletter">→</button>
         </form>
       </div>
     </div>
     <div class="container legal">
-      <span>© 2026 Share Business™. Tous droits réservés.</span>
-      <span>Mentions légales · Politique de confidentialité</span>
+      <span data-i18n="copyright">© 2026 Share Business™. Tous droits réservés.</span>
+      <span data-i18n="legal">Mentions légales · Politique de confidentialité</span>
     </div>
   </footer>
+  <script>
+    const translations = {
+      fr: {
+        nav_about:"Qui sommes-nous ?",nav_events:"Nos évents",nav_guests:"Nos invités",nav_contact:"Contacts",book_seat:"Réserver ma place",discover_event:"Découvrir l’événement",
+        hero_title:"Le rendez-vous <b>premium</b> des entrepreneurs et dirigeants",hero_text:"Réseautage haut de gamme, stratégies gagnantes et connexions qui transforment votre business.",
+        video_tag:"Vidéo d’accueil",video_title:"Une première immersion dans l’expérience Share Business™",video_text:"Un espace vidéo est prévu pour présenter l’événement, son ambiance et la promesse faite aux entrepreneurs avant leur réservation.",
+        numbers_tag:"Share Business™ en chiffres",number_speakers:"Intervenants inspirants",number_participants:"Entrepreneurs participants",number_year:"Share Business dans l’année",number_growth:"Opportunités de croissance",
+        mission_tag:"Notre mission",mission_title:"Créer des connexions.<br>Inspirer l’excellence.<br>Accélérer la croissance.",mission_text:"Share Business™ est une expérience unique qui réunit entrepreneurs, porteurs de projets et dirigeants autour d’une même ambition : développer leur vision, accélérer leur croissance et créer des connexions stratégiques.",learn_more:"En savoir plus",
+        host_tag:"Qui suis-je ?",host_title:"L’hôtesse de l’événement",host_p1:"Une entrepreneure chrétienne et cheffe d’entreprise reconnue par HEC.",host_p2:"Après 4 ans d’expérience professionnelle en entreprise, j’ai décidé de créer mon entreprise.",host_p3:"Je découvre le monde de l’entrepreneuriat et du business. J’ai cette grâce d’avoir un projet inspiré et je mets tout en œuvre pour y arriver : je monte mon business plan grâce à CréaJeunes de l’Adie.",host_p4:"Ce que je regrette, c’est un bon club qui nous rassemble, un dîner entre chefs d’entreprises ou un cocktail d’entrepreneurs...",host_p5:"Une entreprise à monter étant complexe, nous avons projeté de lancer SHARE BUSINESS™, un concept différent : partager nos expériences business et nos visions.",host_p6:"En effet, nous créons plus de richesse et plus de valeur autour de nos moments de qualité.",host_p7:"Venez vivre une expérience unique qui vous remplira d’idées et fera booster votre C.A.",read_more:"Lire la suite",
+        program_title:"Au programme",program_network_title:"Réseautage haut de gamme",program_network_text:"Développez votre réseau professionnel dans un cadre privilégié.",program_strategy_title:"Vision & stratégie",program_strategy_text:"Apprenez à structurer votre vision et à faire grandir votre entreprise avec une stratégie claire.",program_testimonials_title:"Témoignages inspirants",program_testimonials_text:"Découvrez les parcours d’entrepreneurs expérimentés.",program_workshops_title:"Ateliers exclusifs",program_workshops_text:"Vision board, business model canvas, financement de projet, acquisition clients.",
+        ticket_tag:"Billetterie participant",events_title:"Les événements 2026",book:"Réserver",guests_title:"Nos invités",guests_text:"Pasteurs, personnalités et entrepreneurs inspirants réunis autour de la vision Share Business™.",survey_title:"Sondage invités",survey_text:"Proposez le nom du pasteur, de la personnalité ou de l’entrepreneur que vous aimeriez voir participer à un prochain événement Share Business™.",survey_placeholder:"Nom de l’invité souhaité",send:"Envoyer",
+        honor_tag:"Candidature",honor_title:"Devenir invité d’honneur",honor_text:"Vous souhaitez participer à Share Business™ avec un statut d’invité d’honneur ? Remplissez le formulaire de candidature ci-dessous.",honor_note:"Chaque demande est étudiée individuellement par l’équipe Share Business™. La participation en tant qu’invité d’honneur est validée manuellement après analyse du profil et des informations transmises.",field_lastname:"Nom",field_firstname:"Prénom",field_phone:"Téléphone",field_company:"Entreprise / organisation",field_role:"Fonction",field_reason:"Pourquoi souhaitez-vous devenir invité d’honneur ?",field_link:"Lien site web ou réseau social si disponible",send_application:"Envoyer ma candidature",
+        cta_title:"Prêt à passer<br>au niveau supérieur ?",cta_text:"Rejoignez la communauté des entrepreneurs qui osent voir plus grand.",footer_about:"Le rendez-vous premium des entrepreneurs et dirigeants. Réseautage, stratégies et connexions qui transforment.",footer_who:"Qui sommes-nous ?",footer_presentation:"Présentation SHARE BUSINESS",footer_tabs:"Onglets",footer_home:"Accueil",footer_events:"Nos évents : dates et inscriptions",footer_guests:"Nos invités : pasteurs et personnalités",footer_contact:"Contact",newsletter_text:"Recevez nos actualités et nos prochains événements.",email_placeholder:"Votre email",copyright:"© 2026 Share Business™. Tous droits réservés.",legal:"Mentions légales · Politique de confidentialité"
+      },
+      en: {
+        nav_about:"About us",nav_events:"Events",nav_guests:"Guests",nav_contact:"Contact",book_seat:"Book my seat",discover_event:"Discover the event",
+        hero_title:"The <b>premium</b> gathering for entrepreneurs and business leaders",hero_text:"High-level networking, winning strategies and connections that can transform your business.",
+        video_tag:"Welcome video",video_title:"A first look into the Share Business™ experience",video_text:"This video space is reserved to introduce the event, its atmosphere and its promise to entrepreneurs before booking.",
+        numbers_tag:"Share Business™ in numbers",number_speakers:"Inspiring speakers",number_participants:"Entrepreneurs attending",number_year:"Share Business events per year",number_growth:"Growth opportunities",
+        mission_tag:"Our mission",mission_title:"Create connections.<br>Inspire excellence.<br>Accelerate growth.",mission_text:"Share Business™ is a unique experience that brings together entrepreneurs, project leaders and executives around one ambition: developing their vision, accelerating their growth and creating strategic connections.",learn_more:"Learn more",
+        host_tag:"Who am I?",host_title:"The event host",host_p1:"A Christian entrepreneur and business leader recognized by HEC.",host_p2:"After 4 years of professional experience in corporate environments, I decided to create my own company.",host_p3:"I discovered the world of entrepreneurship and business. I have the grace of carrying an inspired project and I am doing everything I can to make it happen: I built my business plan with CréaJeunes by Adie.",host_p4:"What I missed was a real club that brings us together, a dinner for business leaders or an entrepreneurs’ cocktail.",host_p5:"Because building a company is complex, we decided to launch SHARE BUSINESS™, a different concept: sharing our business experiences and visions.",host_p6:"Indeed, we create more wealth and more value through quality moments together.",host_p7:"Come and live a unique experience that will fill you with ideas and help boost your revenue.",read_more:"Read more",
+        program_title:"Program",program_network_title:"High-level networking",program_network_text:"Develop your professional network in a privileged setting.",program_strategy_title:"Vision & strategy",program_strategy_text:"Learn how to structure your vision and grow your business with a clear strategy.",program_testimonials_title:"Inspiring testimonials",program_testimonials_text:"Discover the journeys of experienced entrepreneurs.",program_workshops_title:"Exclusive workshops",program_workshops_text:"Vision board, business model canvas, project financing, customer acquisition.",
+        ticket_tag:"Participant ticketing",events_title:"2026 events",book:"Book",guests_title:"Our guests",guests_text:"Pastors, public figures and inspiring entrepreneurs gathered around the Share Business™ vision.",survey_title:"Guest survey",survey_text:"Suggest the name of the pastor, public figure or entrepreneur you would like to see at a future Share Business™ event.",survey_placeholder:"Name of desired guest",send:"Send",
+        honor_tag:"Application",honor_title:"Become a guest of honor",honor_text:"Would you like to attend Share Business™ as a guest of honor? Fill in the application form below.",honor_note:"Each request is reviewed individually by the Share Business™ team. Participation as a guest of honor is manually validated after reviewing the profile and submitted information.",field_lastname:"Last name",field_firstname:"First name",field_phone:"Phone",field_company:"Company / organization",field_role:"Role",field_reason:"Why would you like to become a guest of honor?",field_link:"Website or social media link if available",send_application:"Send my application",
+        cta_title:"Ready to reach<br>the next level?",cta_text:"Join the community of entrepreneurs who dare to think bigger.",footer_about:"The premium gathering for entrepreneurs and business leaders. Networking, strategies and connections that transform.",footer_who:"About us",footer_presentation:"SHARE BUSINESS presentation",footer_tabs:"Tabs",footer_home:"Home",footer_events:"Events: dates and registration",footer_guests:"Guests: pastors and public figures",footer_contact:"Contact",newsletter_text:"Receive our news and upcoming events.",email_placeholder:"Your email",copyright:"© 2026 Share Business™. All rights reserved.",legal:"Legal notice · Privacy policy"
+      }
+    };
+
+    function setLanguage(lang){
+      const pack = translations[lang] || translations.fr;
+      document.documentElement.lang = lang;
+      document.querySelectorAll("[data-i18n]").forEach((el) => {
+        const value = pack[el.dataset.i18n];
+        if(value) el.textContent = value;
+      });
+      document.querySelectorAll("[data-i18n-html]").forEach((el) => {
+        const value = pack[el.dataset.i18nHtml];
+        if(value) el.innerHTML = value;
+      });
+      document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+        const value = pack[el.dataset.i18nPlaceholder];
+        if(value) el.placeholder = value;
+      });
+      document.querySelectorAll("[data-i18n-aria]").forEach((el) => {
+        const value = pack[el.dataset.i18nAria];
+        if(value) el.setAttribute("aria-label", value);
+      });
+      document.querySelectorAll(".language-switch button").forEach((button) => {
+        button.classList.toggle("active", button.dataset.lang === lang);
+      });
+      localStorage.setItem("shareBusinessLang", lang);
+    }
+
+    document.querySelectorAll(".language-switch button").forEach((button) => {
+      button.addEventListener("click", () => setLanguage(button.dataset.lang));
+    });
+    setLanguage(localStorage.getItem("shareBusinessLang") || "fr");
+  </script>
 </body>
 </html>
