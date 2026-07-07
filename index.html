@@ -125,6 +125,8 @@
     .survey-form{display:grid;grid-template-columns:1fr auto;gap:12px;margin-top:22px}
     .survey-form input{width:100%;border:1px solid #d9d0bf;background:var(--cream);padding:15px;color:#111;border-radius:2px}
     .survey-form .btn{min-height:54px}
+    .form-status{grid-column:1/-1;margin:0;color:var(--green);font-size:14px;font-weight:700;line-height:1.5}
+    .form-status.error{color:#a23b2a}
 
     .honor{background:white;border-top:1px solid #eee;border-bottom:1px solid #eee}
     .honor-layout{display:grid;grid-template-columns:.82fr 1.18fr;gap:54px;align-items:start}
@@ -150,9 +152,10 @@
     .footer h4{color:var(--green);font-size:14px;text-transform:uppercase;margin:0 0 14px}
     .footer p,.footer a{color:#555;font-size:15px;line-height:1.85;display:block}
     .footer a:hover{color:var(--green)}
-    .newsletter{display:flex;border:1px solid #ddd;background:white}
+    .newsletter{display:flex;flex-wrap:wrap;border:1px solid #ddd;background:white}
     .newsletter input{border:0;padding:14px;flex:1;min-width:0}
     .newsletter button{border:0;background:white;padding:0 16px;color:var(--green);font-weight:800;cursor:pointer}
+    .newsletter .form-status{flex:0 0 100%;padding:0 14px 12px}
     .legal{border-top:1px solid #eee;margin-top:35px;padding-top:18px;color:#777;font-size:12px;display:flex;justify-content:space-between;gap:20px}
 
     @media(max-width:900px){
@@ -364,7 +367,7 @@
         <div class="survey-card">
           <h3 data-i18n="survey_title">Sondage invités</h3>
           <p data-i18n="survey_text">Proposez le nom du pasteur, de la personnalité ou de l’entrepreneur que vous aimeriez voir participer à un prochain événement Share Business™.</p>
-          <form class="survey-form" action="#" method="post">
+          <form class="survey-form js-collector-form" action="#" method="post" data-form-type="Sondage invités">
             <input type="text" name="invite_souhaite" placeholder="Nom de l’invité souhaité" aria-label="Nom de l’invité souhaité" data-i18n-placeholder="survey_placeholder" data-i18n-aria="survey_placeholder" required>
             <button class="btn green" type="submit" data-i18n="send">Envoyer</button>
           </form>
@@ -380,7 +383,7 @@
           <p data-i18n="honor_text">Vous souhaitez participer à Share Business™ avec un statut d’invité d’honneur ? Remplissez le formulaire de candidature ci-dessous.</p>
           <p class="honor-note" data-i18n="honor_note">Chaque demande est étudiée individuellement par l’équipe Share Business™. La participation en tant qu’invité d’honneur est validée manuellement après analyse du profil et des informations transmises.</p>
         </div>
-        <form class="honor-form" action="#" method="post">
+        <form class="honor-form js-collector-form" action="#" method="post" data-form-type="Candidature invité d’honneur">
           <div class="field"><label for="honor-lastname" data-i18n="field_lastname">Nom</label><input id="honor-lastname" name="nom" autocomplete="family-name" required></div>
           <div class="field"><label for="honor-firstname" data-i18n="field_firstname">Prénom</label><input id="honor-firstname" name="prenom" autocomplete="given-name" required></div>
           <div class="field"><label for="honor-email">Email</label><input id="honor-email" name="email" type="email" autocomplete="email" required></div>
@@ -433,7 +436,7 @@
       <div>
         <h4>Newsletter</h4>
         <p data-i18n="newsletter_text">Recevez nos actualités et nos prochains événements.</p>
-        <form class="newsletter" action="#" method="post">
+        <form class="newsletter js-collector-form" action="#" method="post" data-form-type="Newsletter">
           <input type="email" name="email" placeholder="Votre email" aria-label="Votre email" data-i18n-placeholder="email_placeholder" data-i18n-aria="email_placeholder" required>
           <button type="submit" aria-label="S’inscrire à la newsletter">→</button>
         </form>
@@ -445,6 +448,8 @@
     </div>
   </footer>
   <script>
+    const GOOGLE_APPS_SCRIPT_URL = "";
+
     const translations = {
       fr: {
         nav_about:"Qui sommes-nous ?",nav_events:"Nos évents",nav_guests:"Nos invités",nav_contact:"Contacts",book_seat:"Réserver ma place",discover_event:"Découvrir l’événement",
@@ -501,6 +506,59 @@
       button.addEventListener("click", () => setLanguage(button.dataset.lang));
     });
     setLanguage(localStorage.getItem("shareBusinessLang") || "fr");
+
+    function getCollectorMessage(type){
+      if(type === "Newsletter") return "Merci, votre email a bien été enregistré.";
+      if(type === "Sondage invités") return "Merci, votre suggestion a bien été enregistrée.";
+      return "Merci, votre candidature a bien été envoyée.";
+    }
+
+    function setFormStatus(form, message, isError = false){
+      let status = form.querySelector(".form-status");
+      if(!status){
+        status = document.createElement("p");
+        status.className = "form-status";
+        status.setAttribute("role", "status");
+        form.appendChild(status);
+      }
+      status.textContent = message;
+      status.classList.toggle("error", isError);
+    }
+
+    document.querySelectorAll(".js-collector-form").forEach((form) => {
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const formType = form.dataset.formType || "Formulaire";
+        const submitButton = form.querySelector("button[type='submit']");
+
+        if(!GOOGLE_APPS_SCRIPT_URL){
+          setFormStatus(form, "Formulaire bientôt connecté. Vous pouvez aussi écrire à contact@sharebusiness.fr.", true);
+          return;
+        }
+
+        const payload = new FormData(form);
+        payload.append("formulaire", formType);
+        payload.append("page", window.location.href);
+        payload.append("langue", document.documentElement.lang || "fr");
+
+        if(submitButton) submitButton.disabled = true;
+        setFormStatus(form, "Envoi en cours...");
+
+        try{
+          await fetch(GOOGLE_APPS_SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors",
+            body: payload
+          });
+          form.reset();
+          setFormStatus(form, getCollectorMessage(formType));
+        }catch(error){
+          setFormStatus(form, "L’envoi n’a pas abouti. Merci d’écrire à contact@sharebusiness.fr.", true);
+        }finally{
+          if(submitButton) submitButton.disabled = false;
+        }
+      });
+    });
   </script>
 </body>
 </html>
